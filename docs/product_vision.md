@@ -106,3 +106,27 @@ GDB asks:
 
 “Who are you becoming, and what evidence demonstrates that development?”
 
+## Future Founder Operations
+
+
+
+A future internal GDB command center may summarize:
+
+
+
+\- Users
+
+\- Revenue
+
+\- Product health
+
+\- Infrastructure
+
+\- Support
+
+\- Team progress
+
+
+
+This is not part of the Year 1 MVP initially.
+
