@@ -1,9 +1,12 @@
 const startButton = document.querySelector(".start-button");
 const timerDisplay = document.querySelector(".timer-display");
 const pauseButton = document.querySelector(".pause-button");
+const buddyDisplay = document.querySelector(".buddy-state");
 let focusDuration = 25;
 let isFocusActive = false;
 let timerInterval = null;
+// Buddy states: ready, focusing, completed, missed
+let buddyState = "ready";
 function formatTime(totalSeconds) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -23,6 +26,8 @@ function startTimer() {
 startButton.addEventListener("click", function () {
     if (isFocusActive === false) {
         isFocusActive = true;
+        buddyState = "focusing";
+        buddyDisplay.textContent = "😤 Buddy is focusing";
         startButton.textContent = "Focus Started";
         startTimer();
     }
