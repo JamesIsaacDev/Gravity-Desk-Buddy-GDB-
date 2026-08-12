@@ -18,11 +18,18 @@ function startTimer() {
     let remainingSeconds = focusDuration * 60;
 
     timerInterval = setInterval(function () {
-        remainingSeconds = remainingSeconds - 1;
-        timerDisplay.textContent = formatTime(remainingSeconds);
-    }, 1000);
-}
+    remainingSeconds = remainingSeconds - 1;
+    timerDisplay.textContent = formatTime(remainingSeconds);
 
+  if (remainingSeconds === 0) {
+    clearInterval(timerInterval);
+    isFocusActive = false;
+    buddyState = "completed";
+    buddyDisplay.textContent = "🎉 Buddy completed the focus session!";
+    startButton.textContent = "Start Focus";
+}
+}, 1000);
+}
 startButton.addEventListener("click", function () {
     if (isFocusActive === false) {
         isFocusActive = true;
