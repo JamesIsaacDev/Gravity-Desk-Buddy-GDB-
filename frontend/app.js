@@ -2,11 +2,13 @@ const startButton = document.querySelector(".start-button");
 const timerDisplay = document.querySelector(".timer-display");
 const pauseButton = document.querySelector(".pause-button");
 const buddyDisplay = document.querySelector(".buddy-state");
+const streakDisplay = document.querySelector(".streak-display");
 let focusDuration = 25;
 let isFocusActive = false;
 let timerInterval = null;
 // Buddy states: ready, focusing, completed, missed
 let buddyState = "ready";
+let streakCount = 0;
 function formatTime(totalSeconds) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -25,6 +27,8 @@ function startTimer() {
     clearInterval(timerInterval);
     isFocusActive = false;
     buddyState = "completed";
+    streakCount++;
+    streakDisplay.textContent = `🔥 Streak: ${streakCount}`;
     buddyDisplay.textContent = "🎉 Buddy completed the focus session!";
     startButton.textContent = "Start Focus";
 }
@@ -42,5 +46,7 @@ startButton.addEventListener("click", function () {
 pauseButton.addEventListener("click", function () {
     clearInterval(timerInterval);
     isFocusActive = false;
+    buddyState = "ready";
+    buddyDisplay.textContent = "😌 Buddy is ready";
     startButton.textContent = "Start Focus";
 });
