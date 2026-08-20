@@ -41,6 +41,13 @@ startButton.addEventListener("click", function () {
         buddyDisplay.textContent = "😤 Buddy is focusing";
         startButton.textContent = "Focus Started";
         startTimer();
+        fetch("http://localhost:3000/health")
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (data) {
+            console.log(data);
+        });
     }
 });
 pauseButton.addEventListener("click", function () {
