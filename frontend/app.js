@@ -41,15 +41,19 @@ startButton.addEventListener("click", function () {
         buddyDisplay.textContent = "😤 Buddy is focusing";
         startButton.textContent = "Focus Started";
         startTimer();
-        fetch("http://localhost:3000/health")
-        .then(function (response) {
-            return response.text();
-        })
-        .then(function (data) {
-            console.log(data);
+
+        fetch("http://localhost:3000/focus-sessions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                durationMinutes: focusDuration
+            })
         });
     }
 });
+
 pauseButton.addEventListener("click", function () {
     clearInterval(timerInterval);
     isFocusActive = false;
