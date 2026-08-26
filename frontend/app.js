@@ -9,6 +9,7 @@ let timerInterval = null;
 // Buddy states: ready, focusing, completed, missed
 let buddyState = "ready";
 let streakCount = 0;
+let currentSessionId = null;
 function formatTime(totalSeconds) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
@@ -41,16 +42,22 @@ startButton.addEventListener("click", function () {
         buddyDisplay.textContent = "😤 Buddy is focusing";
         startButton.textContent = "Focus Started";
         startTimer();
-
-        fetch("http://localhost:3000/focus-sessions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                durationMinutes: focusDuration
-            })
-        });
+fetch("http://localhost:3000/focus-sessions", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        durationMinutes: focusDuration
+    })
+})
+.then(function (response) {
+    return response.json();
+})
+.then(function (data) {
+    currentSessionId = data.session_id;
+    console.log("Current session ID:", currentSessionId);
+});
     }
 });
 
