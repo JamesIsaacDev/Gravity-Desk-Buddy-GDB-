@@ -33,10 +33,23 @@ app.post("/focus-sessions", function (request, response) {
         });
     }
 
-    response.status(201).json({
-        message: "Focus session accepted",
-        durationMinutes: durationMinutes
+    pool.query(
+    `
+    INSERT INTO focus_sessions (user_id, planned_duration_min)
+    VALUES ($1, $2)
+    RETURNING *
+    `,
+    [1, durationMinutes]
+)
+.then(function (result) {
+    response.status(201).json(result.rows[0]);
+})
+.catch(function (error) {
+    console.error("Focus session insert failed:", error.message);
+    response.status(500).json({
+        error: "Failed to create focus session"
     });
+});
 });
 app.listen(port, () => {
   console.log(`GDB backend is listening at http://localhost:${port}`);
