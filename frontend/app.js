@@ -32,6 +32,9 @@ function startTimer() {
     streakDisplay.textContent = `🔥 Streak: ${streakCount}`;
     buddyDisplay.textContent = "🎉 Buddy completed the focus session!";
     startButton.textContent = "Start Focus";
+    fetch(`http://localhost:3000/focus-sessions/${currentSessionId}/complete`, {
+    method: "PATCH"
+});
 }
 }, 1000);
 }
