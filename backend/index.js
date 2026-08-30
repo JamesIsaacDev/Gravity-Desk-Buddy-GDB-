@@ -27,11 +27,16 @@ app.get("/health", function (request, response) {
 app.post("/focus-sessions", function (request, response) {
     const durationMinutes = request.body.durationMinutes;
 
-    if (!durationMinutes || typeof durationMinutes !== "number" || durationMinutes <= 0) {
-        return response.status(400).json({
-            error: "Invalid focus duration"
-        });
-    }
+    if (
+    !durationMinutes ||
+    typeof durationMinutes !== "number" ||
+    !Number.isInteger(durationMinutes) ||
+    durationMinutes <= 0
+) {
+    return response.status(400).json({
+        error: "Invalid focus duration"
+    });
+}
     pool.query(
     `
     INSERT INTO focus_sessions (user_id, planned_duration_min)
