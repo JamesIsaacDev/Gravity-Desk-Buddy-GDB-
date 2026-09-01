@@ -1,5 +1,5 @@
 -- =========================================================
--- Gravity Daily Buddy (GDB)
+-- Gravity Desk Buddy (GDB)
 -- PostgreSQL Database Blueprint
 -- Version: 2.0
 --
@@ -158,13 +158,11 @@ CREATE TABLE IF NOT EXISTS user_domain_journeys (
         )
 );
 
-
 -- Only one active primary domain journey per user.
-CREATE UNIQUE INDEX IF NOT EXISTS
-    uq_user_active_primary_domain
+CREATE UNIQUE INDEX IF NOT EXISTS uq_user_active_primary_domain
 ON user_domain_journeys (user_id)
 WHERE is_primary = TRUE
-  AND ended_at IS NULL;
+AND ended_at IS NULL;
 
 
 -- =========================================================
@@ -367,19 +365,19 @@ CREATE TABLE IF NOT EXISTS user_orbit_history (
 -- =========================================================
 
 CREATE INDEX IF NOT EXISTS idx_users_current_orbit
-    ON users (current_orbit_id);
+ON users (current_orbit_id);
 
 CREATE INDEX IF NOT EXISTS idx_user_domains_user
-    ON user_domain_journeys (user_id, started_at DESC);
+ON user_domain_journeys (user_id, started_at DESC);
 
 CREATE INDEX IF NOT EXISTS idx_journal_entries_user_created
-    ON journal_entries (user_id, created_at DESC);
+ON journal_entries (user_id, created_at DESC);
 
 CREATE INDEX IF NOT EXISTS idx_focus_sessions_user_started
-    ON focus_sessions (user_id, started_at DESC);
+ON focus_sessions (user_id, started_at DESC);
 
 CREATE INDEX IF NOT EXISTS idx_orbit_history_user_awarded
-    ON user_orbit_history (user_id, awarded_at DESC);
+ON user_orbit_history (user_id, awarded_at DESC);
 
 
 COMMIT;
