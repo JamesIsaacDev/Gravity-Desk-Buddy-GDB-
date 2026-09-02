@@ -18,7 +18,7 @@ function formatTime(totalSeconds) {
 }
 
 function startTimer() {
-    let remainingSeconds = focusDuration * 60;
+    let remainingSeconds = focusDuration * 60;;;
 
     timerInterval = setInterval(function () {
     remainingSeconds = remainingSeconds - 1;
