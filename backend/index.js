@@ -16,7 +16,7 @@ pool.query("SELECT NOW()")
     .catch(function (error) {
         console.error("Database connection failed:", error.message);
     });
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.get("/health", function (request, response) {
     response.send("GDB backend is healthy");
 });
