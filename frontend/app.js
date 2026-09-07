@@ -32,7 +32,7 @@ function startTimer() {
     streakDisplay.textContent = `🔥 Streak: ${streakCount}`;
     buddyDisplay.textContent = "🎉 Buddy completed the focus session!";
     startButton.textContent = "Start Focus";
-    fetch(`http://localhost:3000/focus-sessions/${currentSessionId}/complete`, {
+    fetch(`https://gdb-kd21.onrender.com/focus-sessions/${currentSessionId}/complete`, {
     method: "PATCH"
 });
 }
@@ -45,7 +45,7 @@ startButton.addEventListener("click", function () {
         buddyDisplay.textContent = "😤 Buddy is focusing";
         startButton.textContent = "Focus Started";
         startTimer();
-fetch("http://localhost:3000/focus-sessions", {
+fetch("https://gdb-kd21.onrender.com/focus-sessions", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
