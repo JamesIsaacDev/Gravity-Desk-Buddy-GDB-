@@ -127,6 +127,17 @@ Start Focus
 
 ## Next Milestone
 
-TBD after review.
+## Next Milestone
+
+### Persistent User Progress Foundation
+
+Build the next layer needed to support repeat beta usage:
+- persist streak data,
+- persist basic Buddy state where useful,
+- make the Start/Pause experience cleaner,
+- preserve remaining timer state correctly when paused,
+- prepare the app for real user identity instead of relying indefinitely on hardcoded `user_id = 1`.
+
+This milestone should strengthen the existing Focus + Buddy loop rather than introduce Orbits, payments, or social features.
 
 
