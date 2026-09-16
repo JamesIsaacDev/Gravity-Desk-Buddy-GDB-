@@ -23,6 +23,38 @@ const port = process.env.PORT || 3000;
 app.get("/health", function (request, response) {
     response.send("GDB backend is healthy");
 });
+
+app.post("/signup", function (request, response) {
+    const displayName = request.body.displayName;
+    const username = request.body.username;
+    const email = request.body.email;
+
+    if (!displayName || !username || !email) {
+        return response.status(400).json({
+            error: "Display name, username, and email are required"
+        });
+    }
+
+    pool.query(
+        `
+        INSERT INTO users (display_name, username, email)
+        VALUES ($1, $2, $3)
+        RETURNING *
+        `,
+        [displayName, username, email]
+    )
+    .then(function (result) {
+        response.status(201).json(result.rows[0]);
+    })
+    .catch(function (error) {
+        console.error("Signup failed:", error.message);
+
+        response.status(500).json({
+            error: "Failed to create user"
+        });
+    });
+});
+
 app.post("/focus-sessions", function (request, response) {
     const durationMinutes = request.body.durationMinutes;
 
