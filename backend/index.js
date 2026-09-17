@@ -54,6 +54,40 @@ app.post("/signup", function (request, response) {
         });
     });
 });
+app.post("/login", function (request, response) {
+    const email = request.body.email;
+
+    if (!email) {
+        return response.status(400).json({
+            error: "Email is required"
+        });
+    }
+
+    pool.query(
+        `
+        SELECT *
+        FROM users
+        WHERE email = $1
+        `,
+        [email]
+    )
+    .then(function (result) {
+        if (result.rows.length === 0) {
+            return response.status(404).json({
+                error: "User not found"
+            });
+        }
+
+        response.status(200).json(result.rows[0]);
+    })
+    .catch(function (error) {
+        console.error("Login lookup failed:", error.message);
+
+        response.status(500).json({
+            error: "Failed to look up user"
+        });
+    });
+});
 
 app.post("/focus-sessions", function (request, response) {
     const durationMinutes = request.body.durationMinutes;
