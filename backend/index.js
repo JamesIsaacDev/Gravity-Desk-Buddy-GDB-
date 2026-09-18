@@ -91,7 +91,17 @@ app.post("/login", function (request, response) {
 
 app.post("/focus-sessions", function (request, response) {
     const durationMinutes = request.body.durationMinutes;
-
+    const userId = request.body.userId;
+    if (
+    !userId ||
+    typeof userId !== "number" ||
+    !Number.isInteger(userId) ||
+    userId <= 0
+) {
+    return response.status(400).json({
+        error: "Invalid user ID"
+    });
+}
     if (
     !durationMinutes ||
     typeof durationMinutes !== "number" ||
@@ -108,7 +118,7 @@ app.post("/focus-sessions", function (request, response) {
     VALUES ($1, $2)
     RETURNING *
     `,
-    [1, durationMinutes]
+    [userId, durationMinutes]
 )
 .then(function (result) {
     response.status(201).json(result.rows[0]);
