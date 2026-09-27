@@ -144,14 +144,14 @@ app.patch("/focus-sessions/:sessionId/complete", function (request, response) {
     [sessionId]
 )
 .then(function (result) {
+    if (result.rows.length === 0) {
+        return response.status(404).json({
+            error: "Focus session not found"
+        });
+    }
+
     response.status(200).json(result.rows[0]);
 })
-.catch(function (error) {
-    console.error("Focus session completion failed:", error.message);
-    response.status(500).json({
-        error: "Failed to complete focus session"
-    });
-});
 });
 app.listen(port, () => {
   console.log(`GDB backend is listening at http://localhost:${port}`);
