@@ -22,7 +22,35 @@ pool.query("SELECT NOW()")
     });
 
 const port = process.env.PORT || 3000;
+app.post("/journal-entries", function (request, response) {
+    const userId = request.body.userId;
+    const entryText = request.body.entryText;
 
+    if (!userId || !entryText) {
+        return response.status(400).json({
+            error: "User ID and entry text are required"
+        });
+    }
+
+    pool.query(
+        `
+        INSERT INTO journal_entries (user_id, entry_text)
+        VALUES ($1, $2)
+        RETURNING *
+        `,
+        [userId, entryText]
+    )
+    .then(function (result) {
+        response.status(201).json(result.rows[0]);
+    })
+    .catch(function (error) {
+        console.error("Journal entry insert failed:", error.message);
+
+        response.status(500).json({
+            error: "Failed to create journal entry"
+        });
+    });
+});
 app.get("/health", function (request, response) {
     response.send("GDB backend is healthy");
 });
