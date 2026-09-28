@@ -4,6 +4,9 @@ const pauseButton = document.querySelector(".pause-button");
 const buddyDisplay = document.querySelector(".buddy-state");
 const streakDisplay = document.querySelector(".streak-display");
 const resetButton = document.querySelector(".reset-button");
+const journalInput = document.querySelector(".journal-input");
+const journalSaveButton = document.querySelector(".journal-save-button");
+const journalStatus = document.querySelector(".journal-status");
 
 let focusDuration = 25;
 let isFocusActive = false;
@@ -161,4 +164,40 @@ pauseButton.addEventListener("click", function () {
 
 resetButton.addEventListener("click", function () {
     resetTimer();
+});
+journalSaveButton.addEventListener("click", function () {
+    const entryText = journalInput.value;
+
+    if (!entryText) {
+        journalStatus.textContent = "Write something first.";
+        return;
+    }
+
+    fetch("http://localhost:3000/journal-entries", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: currentUserId,
+            entryText: entryText
+        })
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error("Journal save failed");
+        }
+
+        return response.json();
+    })
+    .then(function (data) {
+        journalStatus.textContent = "Reflection saved.";
+        journalInput.value = "";
+
+        console.log("Saved journal entry:", data);
+    })
+    .catch(function (error) {
+        console.error("Journal save failed:", error);
+        journalStatus.textContent = "Could not save reflection.";
+    });
 });
