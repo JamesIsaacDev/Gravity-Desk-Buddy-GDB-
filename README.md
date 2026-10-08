@@ -2,6 +2,8 @@
 
 Gravity Daily Buddy (GDB) is a focus and human-development platform designed to help people consistently act on who they are becoming.
 
+The current product combines focused work, reflection, consistency tracking, and a central Buddy interface into one personal productivity system.
+
 ---
 
 # The Core Problem
@@ -10,82 +12,115 @@ Distraction, inconsistency, and loss of direction prevent people from doing mean
 
 Most productivity tools manage tasks.
 
-GDB develops people.
+GDB is being designed to help users build consistent action, reflect on progress, and develop over time.
 
 ---
 
 # MVP Foundation
 
-The first version of GDB focuses on a simple daily cycle.
+The current MVP is centered around a simple daily loop:
 
-1. Choose meaningful work.
-2. Complete a focus session.
-3. Reflect through a guided journal.
-4. Grow a streak.
-5. Strengthen the relationship with your Buddy.
+1. Enter GDB through the Buddy-centered home experience.
+2. Choose meaningful work.
+3. Complete a focus session.
+4. Record progress and consistency.
+5. Reflect through a journal.
+6. Return the next day.
 
 The MVP succeeds if users genuinely want to return tomorrow.
 
 ---
 
-# Long-Term Vision
+# Current Product Direction
 
-GDB may eventually combine daily action with long-term personal development through:
+The Buddy is being designed as the central interface of GDB.
 
-- Domain-based development journeys
-- Multiple thinking frameworks
-- AI-assisted reflection
-- Behaviour and learning trends
-- Earned Orbit recommendations
-- Cross-domain communities
-- Human review for advanced Orbit progression
+The timer is not the product itself. It is one feature inside a broader Buddy-centered system.
 
-GDB does not simply ask:
+Current interface work includes:
 
-> **What do you do?**
+- Buddy-centered home layout
+- Focus mode and clock interaction
+- Reflection experience
+- Progress and consistency
+- Orbit entry points
+- Buddy visual identity
 
-Instead it asks:
-
-> **Who are you becoming, and what evidence demonstrates that development?**
+Current visual prototyping is being developed in Figma before the next frontend styling pass.
 
 ---
 
-# Orbit Philosophy
+# Current Engineering Stack
 
-Orbits represent earned development over time.
+## Frontend
+- HTML
+- CSS
+- JavaScript
+- Vercel deployment
 
-They are **not**:
+## Backend
+- Node.js
+- Express
+- Render deployment
 
-- Purchased status
+## Database
+- PostgreSQL
+- Neon production database
+
+---
+
+# Working MVP Flows
+
+Current working flows include:
+
+- User creation
+- Temporary email-based user lookup
+- User-owned focus session creation
+- Focus session completion
+- Planned and actual duration storage
+- Journal entry persistence
+- Private journal defaults
+- Frontend-to-backend-to-database integration
+
+Current authentication is temporary and is not production-ready.
+
+---
+
+# Orbit System
+
+GDB includes a long-term developmental layer called Orbits.
+
+Current Orbit architecture is documented in:
+
+`docs/orbit_architecture_v2.md`
+
+Current Orbits:
+
+1. Parallax
+2. Standard Candle
+3. Spectroscopy
+4. Event Horizon
+5. Relativity
+6. Singularity
+
+Orbits are intended to represent demonstrated developmental depth over time.
+
+They are not intended to represent:
+
+- Human worth
+- Professional status
 - Popularity
+- Income
+- Purchased rank
 - Self-declared intelligence
-- One isolated test result
 
-Possible long-term progression:
-
-```text
-Focus
-    ↓
-Reflection
-    ↓
-Behaviour Trends
-    ↓
-Thinking Patterns
-    ↓
-AI Reflection
-    ↓
-Orbit Recommendation
-    ↓
-Human Review (where appropriate)
-    ↓
-Orbit Progression
-```
+The exact long-term progression system remains intentionally unresolved until the product has been tested.
 
 ---
 
 # Repository Structure
 
-```
+```text
 GDB
 │
 ├── backend
@@ -93,43 +128,3 @@ GDB
 ├── docs
 ├── frontend
 └── README.md
-```
-
----
-
-# Current Engineering Stage
-
-Current development focuses on building the project's foundation.
-
-Completed:
-
-- SQL fundamentals
-- Git fundamentals
-- GitHub repository
-- Database Version 1
-- Project documentation
-
-Current objective:
-
-- Database Version 2
-- Orbit Architecture
-- PostgreSQL implementation
-- Backend development
-
----
-
-# Philosophy
-
-The goal of GDB is not simply to help people become productive.
-
-The goal is to help people become the person they are trying to become.
-
-Small daily actions compound into meaningful long-term development.
-
-That development becomes visible through consistent evidence rather than self-description.
-
----
-
-# Status
-
-Private early-stage development project.
