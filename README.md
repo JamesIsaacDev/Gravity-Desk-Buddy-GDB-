@@ -1,4 +1,4 @@
-# Gravity Daily Buddy (GDB)
+# Gravity Desk Buddy (GDB)
 
 Gravity Daily Buddy (GDB) is a focus and human-development platform designed to help people consistently act on who they are becoming.
 
